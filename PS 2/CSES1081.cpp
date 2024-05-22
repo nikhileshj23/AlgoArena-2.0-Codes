@@ -8,7 +8,7 @@ using namespace std;
 #define rall(x) x.rbegin(),x.rend()
 #define FOR(i,b) for(ll i=0;i<b;i++)
 #define FORwi(i,a,b) for(int i=a;i<b;i++)
-#define Get(v,n) FOR(i,n) cin>>v[i];
+#define get(v) FOR(i,v.size()) cin>>v[i];
 #define yes cout<<"YES"<<endl;
 #define no cout<<"NO"<<endl;
 #define see(v) FOR(i,sz(v)) cout<<v[i]<<" "; cout<<endl;
@@ -36,12 +36,6 @@ int prime(long long int a){
     return 1;
 }
 
-ll get(){
-    ll x;
-    cin>>x;
-    return x;
-} 
-
 string base_rep(ll n, ll b){  //for representation in any base
     if(n==0) return "0";
     string res="";
@@ -53,31 +47,40 @@ string base_rep(ll n, ll b){  //for representation in any base
     return res;
 }
 
+long long N=1e9+7;
+vector<ll> v(1e6+5);
 void solve(){
-    int n=get();
-    mpii mp;
+    int n;
+    cin>>n;
     FOR(i,n){
         int x;
         cin>>x;
-        mp[x]++;
+        v[x]++;
     }
-    int ans=0;
-    auto it=mp.begin();
-    while(it!=mp.end()){
-        ans=max(ans,it->second);
-        it++;
+    for(int i=1e6+1;i>=1;i--){
+        int div=0;
+        for(int j=i;j<=1e6;j+=i){
+            div+=v[j];
+        }
+        if(div>=2){
+            cout<<i<<endl;
+            break;
+        }
     }
-    cout<<ans;
+
 }
 
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);cout.tie(NULL); 
+
+    solve();
+
     // int t;
     // cin>>t;
     // while(t--){
-    //     solve();
-    // }  
-    
-    solve();
+        
+    // } 
+   
+
 }

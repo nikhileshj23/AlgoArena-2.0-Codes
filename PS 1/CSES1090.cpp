@@ -54,20 +54,27 @@ string base_rep(ll n, ll b){  //for representation in any base
 }
 
 void solve(){
-    int n=get();
-    mpii mp;
-    FOR(i,n){
-        int x;
-        cin>>x;
-        mp[x]++;
-    }
+    int n=get(),x=get();
+    vi v(n);
+    FOR(i,n) cin>>v[i];
+    sort(all(v));
     int ans=0;
-    auto it=mp.begin();
-    while(it!=mp.end()){
-        ans=max(ans,it->second);
-        it++;
+    int lo=0,hi=n-1;
+    while(lo<hi){
+        if(v[hi]>=x){
+            ans++;
+            hi--;
+        }else if(v[lo]+v[hi]>x){
+            ans++;
+            hi--;
+        }else{
+            lo++;
+            hi--;
+            ans++;
+        }
     }
-    cout<<ans;
+    ans+=(hi==lo);
+    cout<<ans<<endl;
 }
 
 int main(){

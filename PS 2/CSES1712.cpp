@@ -8,7 +8,7 @@ using namespace std;
 #define rall(x) x.rbegin(),x.rend()
 #define FOR(i,b) for(ll i=0;i<b;i++)
 #define FORwi(i,a,b) for(int i=a;i<b;i++)
-#define Get(v,n) FOR(i,n) cin>>v[i];
+#define get(v) FOR(i,v.size()) cin>>v[i];
 #define yes cout<<"YES"<<endl;
 #define no cout<<"NO"<<endl;
 #define see(v) FOR(i,sz(v)) cout<<v[i]<<" "; cout<<endl;
@@ -22,12 +22,12 @@ using namespace std;
 #define pll pair<ll,ll>
 typedef long long int ll;
 typedef unsigned long long ull;
-
+ 
 int gcd(int a,int b){
     if(b==0) return a;
     return gcd(b,a%b);
 }
-
+ 
 int prime(long long int a){
     if(a==1) return 0;
     for(int i=2;i<=sqrt(a);i++){
@@ -35,13 +35,7 @@ int prime(long long int a){
     }
     return 1;
 }
-
-ll get(){
-    ll x;
-    cin>>x;
-    return x;
-} 
-
+ 
 string base_rep(ll n, ll b){  //for representation in any base
     if(n==0) return "0";
     string res="";
@@ -52,32 +46,32 @@ string base_rep(ll n, ll b){  //for representation in any base
     reverse(all(res));
     return res;
 }
-
+ 
+long long N=1e9+7;
+ 
 void solve(){
-    int n=get();
-    mpii mp;
-    FOR(i,n){
-        int x;
-        cin>>x;
-        mp[x]++;
+    ll a,b;
+    cin>>a>>b;
+    ll res=1;
+    while(b>0){
+        if(b%2==1) res=(res*a)%N;
+        a=(a*a)%N;
+        b>>=1;
+        // cout<<a<<" "<<b<<" "<<res<<endl;
     }
-    int ans=0;
-    auto it=mp.begin();
-    while(it!=mp.end()){
-        ans=max(ans,it->second);
-        it++;
-    }
-    cout<<ans;
+    cout<<res<<endl;
 }
-
+ 
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);cout.tie(NULL); 
-    // int t;
-    // cin>>t;
-    // while(t--){
-    //     solve();
-    // }  
-    
-    solve();
+ 
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    } 
+ 
+    // solve();
+ 
 }
