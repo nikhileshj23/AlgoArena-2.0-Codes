@@ -59,7 +59,7 @@ void solve(){
     }
     FORwi(i,1,a+1) FORwi(j,1,b+1){
         if(i!=j){
-            for(int k=1;k<=max(a,b);k++){
+            for(int k=1;k<=max(i,j);k++){
                 if(i>k) dp[i][j]=min(dp[i][j],dp[i-k][j]+dp[k][j]+1);
                 if(j>k) dp[i][j]=min(dp[i][j],dp[i][k]+dp[i][j-k]+1);
             }
